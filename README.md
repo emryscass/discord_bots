@@ -1,5 +1,7 @@
 # discord_bots
 
+python 3.7
+
 Each command will begin with $
 
 Available commands:
