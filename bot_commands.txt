@@ -1,0 +1,13 @@
+All commands will begin with $
+
+ping ($ping - shows latency in ms)
+
+8ball ($8ball question)
+
+clear ($clear amount - default amount=5)
+
+kick ($kick @membername#)
+
+ban ($ban member)
+
+chuck norris joke ($norris)
