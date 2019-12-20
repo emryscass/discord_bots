@@ -91,4 +91,4 @@ async def norris(ctx):
     await ctx.send(joke)
 
 
-client.run('NjU0Nzk2NTk0OTIyNzgyNzQy.XfyoQg.wK-Qqfw2uxJ3RPuV6dNSt41E1g0')
+client.run('DISCORD_TOKEN')
