@@ -88,7 +88,10 @@ async def norris(ctx):
     url = 'http://api.icndb.com/jokes/'
     data = requests.get(url).json()
     joke = data['value'][random.randint(0, len(data['value']))]['joke']
-    await ctx.send(joke)
+    if '&quot;' in joke:
+        await ctx.send(joke.replace('&quot;', ' '))
+    else:
+        await ctx.send(joke)
 
 
 client.run('DISCORD_TOKEN')
