@@ -3,28 +3,29 @@ from discord.ext import commands
 import random
 import requests
 import json
+import urllib.parse, urllib.request, re
+from googletrans import Translator
 
-client = commands.Bot(command_prefix='$')
+client = commands.Bot(command_prefix='emry ')
 
 # show connection has been made
 @client.event
 async def on_ready():
     print('I\'ve made a connection and ready for some action!')
 
-# member has joined server
+# Greet member on joining server
 @client.event
 async def on_member_join(member):
-    print(f'{member} has joined the server')
+    print(f'A new member has joined -> {member}')
+    await member.send(f'Welcome to our learning server {member}! Type "bot info" for more information.')
 
-# member has left server
-@client.event
-async def on_member_remove(member):
-    print(f'{member} has left the server  :(')
+
 
 # Check ping of bot
 @client.command()
 async def ping(ctx):
     await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
+
 
 # Magic 8ball
 @client.command(aliases=['8ball'])
@@ -53,34 +54,12 @@ async def _8ball(ctx, *, question):
     await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
 
+# Clear the screen
 @client.command()
 async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount)
 
-# Kick a member
-@client.command()
-async def kick(ctx, member : discord.Member, *, reason=None):
-    await member.kick(reason=reason)
 
-
-# Ban a member
-@client.command()
-async def ban(ctx, member : discord.Member, *, reason=None):
-    await member.ban(reason=reason)
-    await ctx.send(f'Banned {member.mention}')
-
-# Unban a member
-@client.command()
-async def unban(ctx, *, member):
-    banned_users = await ctx.guild.bans()
-    member_name, member_discriminator = member.split('#')
-    for ban_entry in banned_users:
-        user = ban_entry.user
-
-        if (user.name, user.discriminator) == (member_name, member_discriminator):
-            await ctx.guild.unban(user)
-            await ctx.send(f'Unbanned {user.mention}')
-            return
 
 # prints a random chuck norris joke
 @client.command()
@@ -93,5 +72,26 @@ async def norris(ctx):
     else:
         await ctx.send(joke)
 
+# search youtube
+@client.command()
+async def youtube(ctx, *, search):
+    query_string = urllib.parse.urlencode({
+        'search_query': search
+    })
+
+    htm_content = urllib.request.urlopen(
+        'http://www.youtube.com/results?' + query_string
+    )
+
+    search_results = re.findall('href=\"\\/watch\\?v=(.{11})', htm_content.read().decode())
+    await ctx.send('http://www.youtube.com/watch?v=' + search_results[0])
+
+
+# Translate any language to English
+@client.command()
+async def translate(ctx, *, phrase):
+    translator = Translator()
+    translated = translator.translate(phrase)
+    await ctx.send(f'{translated.text}')
 
 client.run('DISCORD_TOKEN')
