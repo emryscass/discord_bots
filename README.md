@@ -2,27 +2,25 @@
 
 python 3.7
 
-Each command will begin with $
+Each command will begin with emry
 
 Available commands:
 
-$ping returns Pong! latency in ms\
-$8ball ask_question_here\
-$clear amount_specified (default is 5)\
-$kick member_name\
-$ban member_name\
-$norris will return a chuck norris joke from www.icndb.com
+* emry ping returns Pong! latency in ms\
+* emry 8ball ask_question_here\
+* emry clear amount_specified (default is 5)\
+* emry kick member_name\
+* emry ban member_name\
+* emry norris will return a chuck norris joke from www.icndb.com
 
 Examples:
 
-$ping     Pong! 36ms
+emry ping     Pong! 36ms
 
-$8ball Will I win a Madden game later?
+emry 8ball Will I win a Madden game later?
 
-$clear 10
+emry clear 10
 
-$kick @emrys
+emry youtube fozzy judas
 
-$ban @emrys
-
-$norris
+emry norris
