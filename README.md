@@ -1,5 +1,7 @@
 # discord_bots
 
+# This repository is setup as a webhook for my Discord Server
+
 python 3.7
 
 Each command will begin with emry
