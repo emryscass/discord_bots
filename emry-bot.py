@@ -120,4 +120,4 @@ async def translate(ctx, *, phrase):
     translated = translator.translate(phrase)
     await ctx.send(f'{translated.text}')
 
-client.run('NjU0Nzk2NTk0OTIyNzgyNzQy.Xf0EsQ.fGERtZYpFzDYVjBGx_-ge_I2sPE')
+client.run('DISCORD_TOKEN')
